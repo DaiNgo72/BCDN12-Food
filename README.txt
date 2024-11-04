@@ -27,4 +27,7 @@ localStorage.getItem("key");
 localStorage.remoteItem("key")
 ```
 
+# == vs ===
+- ==: tự động ép kiểu, nếu kiểu dữ liệu khác nhau thì tự động chuyển về cùng 1 kiểu rồi mới so sánh
+- ===: không tự động ép kiểu, nếu khác kiểu là sai ngay lập tức.
 
