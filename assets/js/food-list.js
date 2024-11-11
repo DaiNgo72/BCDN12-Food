@@ -39,22 +39,6 @@ document.querySelector('#btnThemMon').onclick = function () {
     saveListFood();
 }
 
-const sv = {
-    age: 20
-}
-
-// chuyển đổi array, object về string
-// làm sao để chuyển được string -> array, object
-
-// JSON: định dạng JSON kiểu dữ liệu String
-// Lưu biểu diễn array và object dưới dạng string
-// Để dễ dàng chuyển đổi qua lại giữa string và array, object
-const svJson = JSON.stringify(sv) //'{"age": "20"}';
-console.log("svJson:::", svJson, typeof svJson);
-
-console.log(sv.age);// lấy giá trị của biến age
-sv.age = 0; // xét/cập nhật lại giá trị
-
 function resetFormAddFood() {
     let foodID = document.querySelector('#foodID');
     let tenMon = document.querySelector('#tenMon');
@@ -171,30 +155,6 @@ function renderListFood2(lf) {
     tbodyFood.innerHTML = content;
 }
 
-function tinhGiaKhuyenMai(gia, khuyenMai) {
-    return gia * (100 - khuyenMai) / 100
-}
-
-function showLoai(loai) {
-    if (loai == 'loai1') {
-        return "Chay"
-    }
-
-    if (loai == 'loai2') {
-        return "Mặn"
-    }
-
-    return "Không xác định"
-}
-
-function showTinhTrang(tinhTrang) {
-    if (tinhTrang == '0') {
-        return "Hết"
-    }
-
-    return "Còn"
-}
-
 function handleDeleteFood(id) {
     console.log("id", id);
 
@@ -215,43 +175,6 @@ function handleDeleteFood(id) {
 
     saveListFood();
 }
-
-function findIndex(arr, key) {
-    for (let i = 0; i < arr.length; i++) {
-        // i=0 -> item = 1
-        // i=3 -> item = 4
-        const item = arr[i];
-
-        if (item.id == key) {
-            // index = i;
-            // break;
-
-            // Tìm được index rồi và return
-            // Khi function đã tìm thấy được giá trị của mình
-            // thì sẽ dừng function => đồng nghĩa với việc thoát khỏi vòng lặp
-            return i
-        }
-    }
-
-    return -1;
-}
-
-const lap = {
-    name: 'macbook',
-    price: 20,
-}
-
-// Lưu vào localStorage với key là laptop
-const lapJSON = JSON.stringify(lap);
-localStorage.setItem("laptop", lapJSON);
-
-// Lấy ra 
-const lapItem = localStorage.getItem("laptop");
-// lapItem => kiểu dữ liệu là string
-
-// Khôi phục lại kiểu dữ liệu trước khi chúng ta lưu vào trong localStorage
-const lapItemObj = JSON.parse(lapItem);
-// lapItemObj => từ string -> khôi phục về kiểu dữ liệu ban đầu.
 
 function saveListFood() {
     const listFoodJSON = JSON.stringify(listFood)
@@ -276,7 +199,6 @@ function init() {
 // Khi vừa vào trang web thì gọi hàm init ngay lặp tức
 init();
 
-
 // -------------------
 // disable button cập nhật của modal khi click vào thêm món ăn
 // disable button thêm của modal khi click vào edit
@@ -292,68 +214,6 @@ document.querySelector("#btnThem").onclick = function () {
     // Hiển thị lên
     document.getElementById('btnThemMon').style.display = 'block';
 }
-
-
-const arr = [
-    { id: 1, age: 20, loai: 'chay' },
-    { id: 2, age: 21, loai: 'man' },
-    { id: 3, age: 22, loai: 'chay' },
-    { id: 4, age: 23, loai: 'man' },
-]
-
-function filterArr(arr, loai) {
-    if(loai == 'all') {
-        return arr;
-    }
-    
-    const newArr = []
-
-    for (let i = 0; i < arr.length; i++) {
-        let item = arr[i];
-
-
-        if (item.loai == loai) {
-            newArr.push(item);
-        }
-    }
-
-    return newArr
-}
-
-const arrChay = filterArr(arr, 'chay')
-
-
-const id = 3;
-
-const itemUpdate = {
-    id: id,
-    age: 27
-}
-
-// let idx = findIndex(arr, id);
-
-// arr[idx] = itemUpdate;
-
-
-
-function findItem(arr, key) {
-    // Duyệt qua từng phần tử của mảng
-    for (let i = 0; i < arr.length; i++) {
-        let item = arr[i];
-
-        // So sánh id của từng phần tử trong mảng với key cần tìm
-        if (item.id === key) {
-            return arr[i]
-        }
-    }
-
-    return null;
-}
-
-// item nào có id = 3;
-console.log({ id: 3, age: 22 });
-console.log(findItem(arr, id));
-
 
 function handleEditFood(id) {
     isEdit = true;
@@ -432,7 +292,6 @@ function handleUpdateFood(id) {
 
     handleResetFormEdit();
 }
-
 
 function handleResetFormEdit() {
     if (isEdit) {
